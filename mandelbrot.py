@@ -1,10 +1,12 @@
 from math import*
-
-def mandelbrot(x,y):
-    for Px in range(x * 2):
-        for Py in range(y * 2):
-            x0 = Px * (3.5 / (x * 2)) - 2.5
-            y0 = Py * (2 / (y * 2)) - 1
+from colorsys import*
+from sys import*
+from struct import*
+def mandelbrot(xd,yd):
+    for Px in range(xd * 2):
+        for Py in range(yd * 2):
+            x0 = Px * (3.5 / (xd * 2)) - 2.5
+            y0 = Py * (2 / (yd * 2)) - 1
             x, y = 0.0, 0.0
             k = 0
             while x * x + y * y <= 4.0 and k < 1000:
@@ -16,7 +18,19 @@ def mandelbrot(x,y):
                 log_zn = log(x * x + y * y) / 2
                 nu = log(log_zn / log(2)) / log(2)
                 k = k + 1 - nu
-            c1, c2 = floor(k), floor(k+1)
+
+
+# HSV to RGB.
+def col(h,s,v):
+    i=int(h*6)
+    f,p=h*6-i,v*(1-s)
+    q,t=v*(1-s*f),v*(1-s*(1-f))
+    return [(v,t,p),(q,v,p),(p,v,t),(p,v,q),(t,p,v),(v,p,q)][i%6]
+
+
+def targa(pixels, w, h):
+    stdout.write("\x00" + )
+
 
 """
 Targa in C
