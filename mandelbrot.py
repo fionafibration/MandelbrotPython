@@ -3,9 +3,10 @@ from colorsys import*
 from sys import*
 from struct import*
 from collections import *
-def mandelbrot(xd,yd,o):
+
+def mandelbrot(xd,o):
     xd *= 2
-    yd *= 2
+    yd = 2 * xd // 3
     pixels = {}
     pix2 = []
     histo = defaultdict(lambda:0)
@@ -44,7 +45,6 @@ def mandelbrot(xd,yd,o):
     targa(pix2, xd, yd)
 
 
-
 # HSV to RGB.
 def col(h,s,v):
     i=int(h*6)
@@ -62,4 +62,4 @@ def targa(pixels, w, h):
         f.write(pack("<BBB", *pixel))
 
 
-mandelbrot(3000, 2000, 60)
+mandelbrot(3000, 60)
